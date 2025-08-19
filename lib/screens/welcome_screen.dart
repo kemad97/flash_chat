@@ -4,19 +4,17 @@ import 'package:flutter/material.dart';
 import 'registration_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-
 class WelcomeScreen extends StatefulWidget {
-  static  const String id = 'welcome_screen';
-
+  static const String id = 'welcome_screen';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
-
-   late AnimationController controller;
-    late Animation animation;
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation animation;
   @override
   void initState() {
     super.initState();
@@ -28,27 +26,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
 
     controller.forward();
 
-     animation = CurvedAnimation(
-      parent: controller,
-      curve: Curves.decelerate,
-    );
+    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
 
-    animation.addStatusListener ((status){
-      if(status == AnimationStatus.completed){
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
         controller.reverse(from: 1.0);
-      }
-      else if(status == AnimationStatus.dismissed){
+      } else if (status == AnimationStatus.dismissed) {
         controller.forward();
       }
-    }
-    );
-    controller.addListener(
-      () {
-        setState(() {
-          // This will rebuild the widget tree whenever the animation value changes.
-        });
-      },
-    );
+    });
+    controller.addListener(() {
+      setState(() {
+        // This will rebuild the widget tree whenever the animation value changes.
+      });
+    });
   }
 
   @override
@@ -70,30 +61,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             Row(
               children: <Widget>[
                 Hero(
-                  tag:'logo' ,
+                  tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: animation.value *80.0,
+                    height: animation.value * 80.0,
                   ),
                 ),
                 TypewriterAnimatedTextKit(
-
-                 text:  ['Flash Chat'],
+                  text: ['Flash Chat'],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
-                    color: Colors.black
+                    color: Colors.black,
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              height: 48.0,
+            SizedBox(height: 48.0),
+            RoundedButton(
+              btnText: "Login",
+              btnColor: Colors.lightBlueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
             ),
-           RoundedButton(btnText: "Login", btnColor: Colors.lightBlueAccent, onPressed: (){Navigator.pushNamed(context, LoginScreen.id);}
-           ),
-          RoundedButton(btnText: "Register", btnColor: Colors.blueAccent, onPressed: (){Navigator.pushNamed(context, RegistrationScreen.id);}
-          ),
+            RoundedButton(
+              btnText: "Register",
+              btnColor: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+            ),
           ],
         ),
       ),
