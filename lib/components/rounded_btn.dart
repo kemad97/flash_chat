@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -6,7 +5,7 @@ class RoundedButton extends StatelessWidget {
   final Color btnColor;
   final VoidCallback onPressed;
 
-  RoundedButton({
+  const RoundedButton({super.key, 
     required this.btnText,
     required this.btnColor,
     required this.onPressed,

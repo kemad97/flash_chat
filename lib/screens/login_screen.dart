@@ -8,6 +8,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -33,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               Hero(
                 tag: 'logo',
-                child: Container(
+                child: SizedBox(
                   height: 200.0,
                   child: Image.asset('images/logo.png'),
                 ),
@@ -70,10 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     email: email,
                     password: password,
                   );
-                  if (user != null) {
-                    Navigator.pushNamed(context, ChatScreen.id);
-                  }
-                  setState(() {
+                  Navigator.pushNamed(context, ChatScreen.id);
+                                  setState(() {
                     showSpinner = false;
                   });
                 },

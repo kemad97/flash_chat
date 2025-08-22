@@ -7,6 +7,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
+
+  const RegistrationScreen({super.key});
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -31,7 +33,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             children: <Widget>[
               Hero(
                 tag: 'logo',
-                child: Container(
+                child: SizedBox(
                   height: 200.0,
                   child: Image.asset('images/logo.png'),
                 ),
@@ -71,10 +73,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       email: email,
                       password: password,
                     );
-                    if (newuser != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
-                    }
-                    setState(() {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                                      setState(() {
                       showSpinner = false;
                     });
                   } catch (e) {
